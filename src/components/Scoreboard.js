@@ -6,11 +6,11 @@ export default function Scoreboard(props) {
         <div className="scoreboard">
         <div className="scoreboard__player">
             <p className="scoreboard__player__name">Player 1</p>
-            <p className="scoreboard__player__score">{props.player1Score}</p>
+            <p className="scoreboard__player__score">{props.cscore}</p>
         </div>
         <div className="scoreboard__player">
             <p className="scoreboard__player__name">Best Score</p>
-            <p className="scoreboard__player__score">{props.bestScore}</p>
+            <p className="scoreboard__player__score">{props.bscore}</p>
         </div>
         </div>
     );

@@ -1,0 +1,13 @@
+body{
+    background-color: black;
+}
+
+.scoreboard{
+    color: aliceblue;
+    font-size: larger;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-evenly;
+
+
+}

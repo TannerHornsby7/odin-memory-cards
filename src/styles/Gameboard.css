@@ -1,18 +1,17 @@
-.board {
-    background-color: black;
-    border: 1px solid #999;
-    clear: both;
-    content: "";
-    display: table;
-    padding: 0;
-    position: relative;
-    width: 675px;
-    height: 675px;
-    margin: 0 auto;
+.gameboard{
+    padding: 50px;
+    background-color: darkgreen;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: -1px;
+    margin-top: -1px;
 }
 .square {
-    border: 1px solid #999;
-    float: left;
+    border: 5px solid darkgray;
     font-size: 24px;
     font-weight: bold;
     line-height: 34px;
@@ -21,22 +20,27 @@
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    width: 225px;}
-
-.cover{
-    /* add logo eventually */
-    color: whitesmoke;
-    background-color: black;
-    border: 1px solid #999;
-    height: 300px;
-    padding: 0;
-    text-align: center;
     width: 225px;
-    position: absolute;
-    z-index: 1;
 }
+
 .square__img{
+    width: 225px;
+    height: 300px;
+    
+}
+
+.square__img:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+.square__back{
+    border: 2px solid black;
+    background-color: whitesmoke;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+}
+
+.square__back__img{
+    width: 90%;
+    height: 90%;
 }
