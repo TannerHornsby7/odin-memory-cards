@@ -57,6 +57,7 @@ function App() {
   let [mcount, setMCount] = useState(0);
   let [currentMonke, setCurrentMonke] = useState(null);
   let [round, setRound] = useState(0);
+  let [timer, setTimer] = useState(3);
 
  
   // update monkes, mcount, currentMonke, and round when size changes
@@ -68,7 +69,19 @@ function App() {
   }, [size]);
 
   // make a function that flips all cards down 3 seconds after round starts
+  // and tells the time until they flip back down
   useEffect(() => {
+    setTimer(3);
+    setTimeout(() => {
+      setTimer(2)
+      setTimeout(() => {
+        setTimer(1);
+        setTimeout(() => {
+          setTimer(0);
+        }, 1000);
+      }, 1000);
+    }, 1000);
+    
     setTimeout(() => {
       let newMonkes = [...monkes];
       for (let i = 0; i < newMonkes.length; i++) {
@@ -147,7 +160,7 @@ function App() {
 
   return (
     <div className="App">
-      <Scoreboard round={round} cscore={cscore} bscore={bscore}></Scoreboard>
+      <Scoreboard timer={timer} round={round} cscore={cscore} bscore={bscore}></Scoreboard>
       <Gameboard monkes={monkes} onClick={flip}></Gameboard>
     </div>
   );
