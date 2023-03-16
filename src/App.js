@@ -1,18 +1,29 @@
 import "./App.css";
-import Scoreboard from "./components/Scoreboard";
+import Scoreboard, {Header} from "./components/Scoreboard";
 import Gameboard from "./components/Gameboard";
 import React, { useEffect, useState } from "react";
 import m1 from "./assets/monkey1.jpg";
 import m2 from "./assets/monkey2.jpg";
 import m3 from "./assets/monkey3.jpeg";
 import m4 from "./assets/monkey4.jpeg";
+import m5 from "./assets/monkey5.jpeg";
+import m6 from "./assets/monkey6.jpg";
+import m7 from "./assets/monkey7.jpg";
+import m8 from "./assets/monkey8.jpg";
 // up to 16 monkeys
 
-const pics = [m1, m2, m3, m4];
+const pics = [m1, m2, m3, m4, m5, m6, m7, m8];
 
 // create reset function
 
 function App() {
+  let tmp_bscore = localStorage.getItem("bscore");
+  if (tmp_bscore) {
+    tmp_bscore = parseInt(tmp_bscore);
+  } else {
+    tmp_bscore = 0;
+  }
+
   // initialize size state first
   let [size, setSize] = useState(4);
     // shuffle function
@@ -52,7 +63,7 @@ function App() {
 
   // initialize state
   let [monkes, setMonkes] = useState(getMonkes());
-  let [bscore, setBScore] = useState(0);
+  let [bscore, setBScore] = useState(tmp_bscore);
   let [cscore, setCScore] = useState(0);
   let [mcount, setMCount] = useState(0);
   let [currentMonke, setCurrentMonke] = useState(null);
@@ -95,7 +106,6 @@ function App() {
   // win condition function
   function checkWin() {
     if (mcount >= size / 2) {
-      alert("You win!");
       setSize(size * 2);
     }
   }
@@ -103,6 +113,7 @@ function App() {
   useEffect(() => {
     if (bscore < cscore) {
       setBScore(cscore);
+      localStorage.setItem("bscore", cscore);
     }
   }, [cscore]);
 
@@ -160,6 +171,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header></Header>
       <Scoreboard timer={timer} round={round} cscore={cscore} bscore={bscore}></Scoreboard>
       <Gameboard monkes={monkes} onClick={flip}></Gameboard>
     </div>
