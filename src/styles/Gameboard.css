@@ -1,0 +1,42 @@
+.board {
+    background-color: black;
+    border: 1px solid #999;
+    clear: both;
+    content: "";
+    display: table;
+    padding: 0;
+    position: relative;
+    width: 675px;
+    height: 675px;
+    margin: 0 auto;
+}
+.square {
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 300px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 225px;}
+
+.cover{
+    /* add logo eventually */
+    color: whitesmoke;
+    background-color: black;
+    border: 1px solid #999;
+    height: 300px;
+    padding: 0;
+    text-align: center;
+    width: 225px;
+    position: absolute;
+    z-index: 1;
+}
+.square__img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
