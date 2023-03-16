@@ -36,7 +36,7 @@ function App() {
         return {
           disabled: false,
           url: pics[Math.floor(i / 2)],
-          flipped: 0,
+          flipped: 1,
           index: i,
           key: i.toString(),
         };
@@ -58,37 +58,27 @@ function App() {
   let [currentMonke, setCurrentMonke] = useState(null);
   let [round, setRound] = useState(0);
 
+ 
   // update monkes, mcount, currentMonke, and round when size changes
   useEffect(() => {
     setMonkes(getMonkes());
     setMCount(0);
     setCurrentMonke(null);
     setRound(round + 1);
-    peek();
   }, [size]);
 
-  // peek function helpers
-  function flip_up() {
-    let newMonkes = [...monkes];
-    for (let i = 0; i < newMonkes.length; i++) {
-      newMonkes[i].flipped = 1;
-    }
-    setMonkes(newMonkes);
-  }
-  function flip_down() {
-    let newMonkes = [...monkes];
-    for (let i = 0; i < newMonkes.length; i++) {
-      newMonkes[i].flipped = 0;
-    }
-    setMonkes(newMonkes);
-  }
-  // peek function
-  function peek() {
-    flip_up();
+  // make a function that flips all cards down 3 seconds after round starts
+  useEffect(() => {
     setTimeout(() => {
-      flip_down();
-    }, 5000);
-  }
+      let newMonkes = [...monkes];
+      for (let i = 0; i < newMonkes.length; i++) {
+        newMonkes[i].flipped = 0;
+      }
+      setMonkes(newMonkes);
+    }, 3000);
+  }, [round]);
+
+
   // win condition function
   function checkWin() {
     if (mcount >= size / 2) {
@@ -123,6 +113,7 @@ function App() {
   
     // check if currentMonke is the same as the newMonke
     if (currentMonke.disabled || monkes[i].disabled || currentMonke.key === newMonkes[i].key){
+      setCurrentMonke(null);
       return; // check if they have been clicked
     }
 
@@ -132,9 +123,13 @@ function App() {
     } else { // no match
       setCScore(cscore - 1);
       setTimeout(() => {
+        console.log('bananna')
         newMonkes[i].flipped = 0;
-        newMonkes[currentMonke.key].flipped = 0;
-      }, 1000);
+        newMonkes[currentMonke.index].flipped = 0;
+        setCurrentMonke(null);
+        setMonkes(newMonkes);
+      }, 500);
+      return -1;
     }
     setCurrentMonke(null);
     setMonkes(newMonkes);
