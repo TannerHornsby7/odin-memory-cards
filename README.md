@@ -2,7 +2,7 @@ Memory Card Game
 
 *DESCRIPTION*
 
-don't click the same face twice!
+Match Those Monkeys!
 
 SKILLS
 - React
